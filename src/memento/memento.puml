@@ -1,0 +1,27 @@
+@startuml
+class Editor {
+- String content
++ EditorState createState()
++ void undo(EditorState)
++ String getContent()
++ void setContent(String)
+}
+
+class EditorState {
+- String content
++ String getContent()
+}
+
+class History {
+~ Stack<EditorState> stack
++ void push(EditorState)
++ EditorState pop()
+}
+
+
+
+History *--> EditorState
+Editor ..> EditorState
+
+
+@enduml
