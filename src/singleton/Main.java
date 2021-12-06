@@ -1,6 +1,4 @@
-import com.sun.scenario.effect.impl.prism.ps.PPSBlend_MULTIPLYPeer;
-
-import javax.sound.midi.Soundbank;
+package singleton;
 
 /**
  * @author BianWenKai

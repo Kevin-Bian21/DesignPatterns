@@ -1,6 +1,7 @@
-import fly.FlyBehavior;
-import quack.Quack;
-import quack.QuackBehavior;
+package strategy;
+
+import strategy.fly.FlyBehavior;
+import strategy.quack.QuackBehavior;
 
 /**
  * @author BianWenKai
