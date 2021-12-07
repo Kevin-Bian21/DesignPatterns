@@ -1,4 +1,5 @@
-#状态模式
+# 状态模式
+
 ![状态模式](https://gitee.com/Kevin_Bian/img_bed/raw/master/img/State.png)
 
 允许对象在内部状态改变时改变它的行为[^1]，对象看起来好像修改了它的类[^2]
