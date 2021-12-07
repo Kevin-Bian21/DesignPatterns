@@ -1,0 +1,72 @@
+@startuml
+class Canvas {
+- Tool currentTool
++ void mouseDown()
++ void mouseUp()
++ Tool getCurrentTool()
++ void setCurrentTool(Tool)
+}
+class BrushTool {
++ void mouseDown()
++ void mouseUp()
+}
+class EraseTool {
++ void mouseDown()
++ void mouseUp()
+}
+class SelectTool {
++ void mouseDown()
++ void mouseUp()
+}
+interface Tool {
+~ void mouseDown()
+~ void mouseUp()
+}
+
+'note "Tool.mouseDown()" as N1
+'Canvas::mouseDown . N1
+'note "Tool.mouseUp()" as N2
+'Canvas::mouseUp . N2
+
+Canvas -> Tool
+
+note left of Canvas::mouseDown
+ Tool.mouseDown()
+ 只要调用canvas中的该方法
+ 就会被委托到Tool来处理
+end note
+note left of Canvas::mouseUp
+ Tool.mouseUp()
+end note
+Tool <|.. BrushTool
+Tool <|.. EraseTool
+Tool <|.. SelectTool
+
+
+
+newpage
+class Context {
+    request()
+}
+interface State {
+    handle()
+}
+class ConcreteStateA {
+    handle()
+}
+class ConcreteStateB {
+    handle()
+}
+class ConcreteStateC {
+    handle()
+}
+
+Context -> State
+note "state.handle()" as N1
+Context ... N1
+
+State <|.. ConcreteStateA
+State <|.. ConcreteStateB
+State <|.. ConcreteStateC
+
+@enduml
