@@ -1,4 +1,6 @@
 @startuml
+skinparam classAttributeIconSize 0
+
 class Editor {
 - String content
 + EditorState createState()
@@ -18,7 +20,14 @@ class History {
 + EditorState pop()
 }
 
+class Editor
+note top : Originator(发起者)
 
+class EditorState
+note right : Memento(备忘录)
+
+class History
+note top : caretaker(监护人)
 
 History *--> EditorState
 Editor ..> EditorState
