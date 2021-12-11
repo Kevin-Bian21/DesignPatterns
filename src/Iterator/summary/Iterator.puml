@@ -1,0 +1,53 @@
+@startuml
+class GoogleBrowser {
+- List<String> urls
+- Integer index
++ void push(String)
++ String back()
++ String next()
++ Iterator createIterator()
+}
+class EdgeBrowser {
+~ String[] urls
+- Integer index
+- int count
++ void push(String)
++ String back()
++ String next()
++ Iterator createIterator()
+}
+interface Iterator {
+~ boolean hasNext()
+~ Object next()
+}
+class EdgeIterator {
+- EdgeBrowser edge
+- int index
++ boolean hasNext()
++ Object next()
+}
+interface Browser {
+~ void push(String)
+~ String back()
+~ String next()
+~ Iterator createIterator()
+}
+
+class GoogleIterator {
+- GoogleBrowser google
+- int index
++ boolean hasNext()
++ Object next()
+}
+
+
+Browser -> Iterator
+
+Browser <|.. GoogleBrowser
+Browser <|.. EdgeBrowser
+
+Iterator <|.. EdgeIterator
+Iterator <|.. GoogleIterator
+scale 1920*1080
+
+@enduml

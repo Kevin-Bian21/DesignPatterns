@@ -1,0 +1,362 @@
+<!DOCTYPE html><html><head>
+      <title>Iterator</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <link rel="stylesheet" href="file:///c:\Users\&#x8FB9;&#x6587;&#x51EF;\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.1\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+
+
+​      
+​      
+​      
+​      
+​      
+​      
+​      
+​      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #333;
+    background: none;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F">&#x8FED;&#x4EE3;&#x5668;&#x6A21;&#x5F0F;</h1>
+
+<hr>
+<p><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" contentscripttype="application/ecmascript" contentstyletype="text/css" height="410.626px" preserveAspectRatio="none" style="width:821px;height:410px;background:#FFFFFF;" version="1.1" viewBox="0 0 821 410" width="821.2519px" zoomAndPan="magnify"><defs><filter height="300%" id="f196c6da5hdpw4" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.50381679389313"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="5.00763358778626" dy="5.00763358778626" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[4f2471fdf62516e0aa9e5b1dca4d20f6]
+class GoogleBrowser--><rect codeline="1" fill="#FEFECE" filter="url(#f196c6da5hdpw4)" height="164.0196" id="GoogleBrowser" style="stroke:#A80036;stroke-width:1.8778625954198476;" width="170.2595" x="8.7634" y="221.5878"/><ellipse cx="37.6824" cy="241.6183" fill="#ADD1B2" rx="13.771" ry="13.771" style="stroke:#A80036;stroke-width:1.251908396946565;"/><path d="M41.1448,236.4542 Q41.3404,236.1803 41.5751,236.0434 Q41.8098,235.9065 42.0837,235.9065 Q42.5531,235.9065 42.8466,236.2292 Q43.14,236.552 43.14,237.3149 L43.14,239.1341 Q43.14,239.8969 42.8466,240.2295 Q42.5531,240.562 42.0837,240.562 Q41.6533,240.562 41.399,240.3077 Q41.1448,240.073 41.0078,239.4275 Q40.9491,238.9776 40.7144,238.7428 Q40.3036,238.2734 39.5407,237.9995 Q38.7779,237.7257 37.9954,237.7257 Q37.0369,237.7257 36.2447,238.1365 Q35.4525,238.5472 34.8363,239.4862 Q34.2201,240.4251 34.2201,241.7161 L34.2201,243.0854 Q34.2201,244.6307 35.3351,245.6577 Q36.4501,246.6846 38.4453,246.6846 Q39.619,246.6846 40.4406,246.3717 Q40.9296,246.176 41.4577,245.6283 Q41.7903,245.2958 41.9761,245.198 Q42.1619,245.1002 42.4162,245.1002 Q42.827,245.1002 43.1498,245.4229 Q43.4725,245.7457 43.4725,246.176 Q43.4725,246.6064 43.0422,247.115 Q42.4162,247.8387 41.4186,248.2495 Q40.0689,248.8168 38.4453,248.8168 Q36.5479,248.8168 35.0417,248.0344 Q33.8094,247.4084 32.9487,246.0685 Q32.088,244.7285 32.088,243.1245 L32.088,241.677 Q32.088,240.0143 32.8606,238.5766 Q33.6333,237.1388 35.0026,236.3662 Q36.3719,235.5935 37.9172,235.5935 Q38.8365,235.5935 39.6483,235.7989 Q40.4601,236.0043 41.1448,236.4542 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.0229" lengthAdjust="spacing" textLength="107.6641" x="57.4626" y="247.7654">GoogleBrowser</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="10.0153" x2="177.771" y1="261.6489" y2="261.6489"/><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="18.7786" y="271.6641"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="97.6489" x="33.8015" y="280.952">List&lt;String&gt; urls</text><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="18.7786" y="288.9854"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="77.6183" x="33.8015" y="298.2733">Integer index</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="10.0153" x2="177.771" y1="306.3068" y2="306.3068"/><ellipse cx="22.5344" cy="320.0778" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="103.9084" x="33.8015" y="325.6099">void push(String)</text><ellipse cx="22.5344" cy="337.3991" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="77.6183" x="33.8015" y="342.9312">String back()</text><ellipse cx="22.5344" cy="354.7204" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="75.1145" x="33.8015" y="360.2525">String next()</text><ellipse cx="22.5344" cy="372.0417" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="137.7099" x="33.8015" y="377.5739">Iterator createIterator()</text><!--MD5=[340f6fdbe0ef183661eddd19683ffcb3]
+class EdgeBrowser--><rect codeline="9" fill="#FEFECE" filter="url(#f196c6da5hdpw4)" height="181.3409" id="EdgeBrowser" style="stroke:#A80036;stroke-width:1.8778625954198476;" width="170.2595" x="222.8397" y="212.8244"/><ellipse cx="257.9557" cy="232.855" fill="#ADD1B2" rx="13.771" ry="13.771" style="stroke:#A80036;stroke-width:1.251908396946565;"/><path d="M261.418,227.6908 Q261.6136,227.417 261.8484,227.2801 Q262.0831,227.1431 262.357,227.1431 Q262.8264,227.1431 263.1198,227.4659 Q263.4133,227.7886 263.4133,228.5515 L263.4133,230.3707 Q263.4133,231.1336 263.1198,231.4661 Q262.8264,231.7987 262.357,231.7987 Q261.9266,231.7987 261.6723,231.5444 Q261.418,231.3096 261.2811,230.6641 Q261.2224,230.2142 260.9877,229.9795 Q260.5769,229.51 259.814,229.2362 Q259.0511,228.9623 258.2687,228.9623 Q257.3102,228.9623 256.518,229.3731 Q255.7258,229.7839 255.1096,230.7228 Q254.4934,231.6617 254.4934,232.9528 L254.4934,234.322 Q254.4934,235.8674 255.6084,236.8943 Q256.7234,237.9213 258.7186,237.9213 Q259.8923,237.9213 260.7138,237.6083 Q261.2029,237.4127 261.731,236.865 Q262.0635,236.5324 262.2494,236.4346 Q262.4352,236.3368 262.6895,236.3368 Q263.1003,236.3368 263.423,236.6596 Q263.7458,236.9823 263.7458,237.4127 Q263.7458,237.843 263.3155,238.3516 Q262.6895,239.0754 261.6919,239.4862 Q260.3422,240.0534 258.7186,240.0534 Q256.8212,240.0534 255.315,239.271 Q254.0826,238.645 253.2219,237.3051 Q252.3613,235.9652 252.3613,234.3612 L252.3613,232.9136 Q252.3613,231.251 253.1339,229.8132 Q253.9066,228.3755 255.2759,227.6028 Q256.6451,226.8302 258.1905,226.8302 Q259.1098,226.8302 259.9216,227.0355 Q260.7334,227.2409 261.418,227.6908 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.0229" lengthAdjust="spacing" textLength="93.8931" x="279.113" y="239.002">EdgeBrowser</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="224.0916" x2="391.8473" y1="252.8855" y2="252.8855"/><polygon fill="none" points="236.6107,261.6489,231.6031,269.1603,241.6183,269.1603" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="68.855" x="247.8779" y="272.1886">String[] urls</text><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="232.855" y="280.2221"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="77.6183" x="247.8779" y="289.5099">Integer index</text><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="232.855" y="297.5434"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="51.3282" x="247.8779" y="306.8313">int count</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="224.0916" x2="391.8473" y1="314.8647" y2="314.8647"/><ellipse cx="236.6107" cy="328.6357" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="103.9084" x="247.8779" y="334.1678">void push(String)</text><ellipse cx="236.6107" cy="345.9571" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="77.6183" x="247.8779" y="351.4892">String back()</text><ellipse cx="236.6107" cy="363.2784" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="75.1145" x="247.8779" y="368.8105">String next()</text><ellipse cx="236.6107" cy="380.5997" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="137.7099" x="247.8779" y="386.1318">Iterator createIterator()</text><!--MD5=[023ecf6702e3ca2ce47ae747eafb20f1]
+class Iterator--><rect codeline="18" fill="#FEFECE" filter="url(#f196c6da5hdpw4)" height="94.7343" id="Iterator" style="stroke:#A80036;stroke-width:1.8778625954198476;" width="143.9695" x="440.0458" y="25.6641"/><ellipse cx="483.6122" cy="45.6947" fill="#B4A7E5" rx="13.771" ry="13.771" style="stroke:#A80036;stroke-width:1.251908396946565;"/><path d="M484.8054,41.489 L484.8054,49.822 L486.9572,49.822 Q487.72,49.822 488.0526,50.1155 Q488.3851,50.4089 488.3851,50.8979 Q488.3851,51.3674 488.0526,51.6608 Q487.72,51.9542 486.9572,51.9542 L480.5216,51.9542 Q479.7587,51.9542 479.4261,51.6608 Q479.0936,51.3674 479.0936,50.8783 Q479.0936,50.4089 479.4261,50.1155 Q479.7587,49.822 480.5216,49.822 L482.6733,49.822 L482.6733,41.489 L480.5216,41.489 Q479.7587,41.489 479.4261,41.1956 Q479.0936,40.9022 479.0936,40.4132 Q479.0936,39.9437 479.4261,39.6503 Q479.7587,39.3569 480.5216,39.3569 L486.9572,39.3569 Q487.72,39.3569 488.0526,39.6503 Q488.3851,39.9437 488.3851,40.4132 Q488.3851,40.9022 488.0526,41.1956 Q487.72,41.489 486.9572,41.489 L484.8054,41.489 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.0229" font-style="italic" lengthAdjust="spacing" textLength="48.8244" x="506.6473" y="51.8417">Iterator</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="441.2977" x2="582.7634" y1="65.7252" y2="65.7252"/><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="441.2977" x2="582.7634" y1="75.7405" y2="75.7405"/><polygon fill="#4177AF" points="453.8168,84.5038,448.8092,92.0153,458.8244,92.0153" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="111.4198" x="465.084" y="95.0436">boolean hasNext()</text><polygon fill="#4177AF" points="453.8168,101.8251,448.8092,109.3366,458.8244,109.3366" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="78.8702" x="465.084" y="112.3649">Object next()</text><!--MD5=[ebaab06cb39b0caf048ff78c3770892d]
+class EdgeIterator--><rect codeline="22" fill="#FEFECE" filter="url(#f196c6da5hdpw4)" height="129.3769" id="EdgeIterator" style="stroke:#A80036;stroke-width:1.8778625954198476;" width="150.229" x="436.916" y="239.1145"/><ellipse cx="467.5252" cy="259.145" fill="#ADD1B2" rx="13.771" ry="13.771" style="stroke:#A80036;stroke-width:1.251908396946565;"/><path d="M470.9875,253.9809 Q471.1831,253.7071 471.4178,253.5701 Q471.6526,253.4332 471.9264,253.4332 Q472.3959,253.4332 472.6893,253.756 Q472.9827,254.0787 472.9827,254.8416 L472.9827,256.6608 Q472.9827,257.4237 472.6893,257.7562 Q472.3959,258.0887 471.9264,258.0887 Q471.4961,258.0887 471.2418,257.8344 Q470.9875,257.5997 470.8506,256.9542 Q470.7919,256.5043 470.5572,256.2696 Q470.1464,255.8001 469.3835,255.5262 Q468.6206,255.2524 467.8382,255.2524 Q466.8797,255.2524 466.0875,255.6632 Q465.2952,256.074 464.6791,257.0129 Q464.0629,257.9518 464.0629,259.2428 L464.0629,260.6121 Q464.0629,262.1574 465.1779,263.1844 Q466.2928,264.2114 468.2881,264.2114 Q469.4617,264.2114 470.2833,263.8984 Q470.7723,263.7028 471.3005,263.1551 Q471.633,262.8225 471.8188,262.7247 Q472.0047,262.6269 472.259,262.6269 Q472.6698,262.6269 472.9925,262.9497 Q473.3153,263.2724 473.3153,263.7028 Q473.3153,264.1331 472.8849,264.6417 Q472.259,265.3655 471.2614,265.7762 Q469.9116,266.3435 468.2881,266.3435 Q466.3906,266.3435 464.8844,265.5611 Q463.6521,264.9351 462.7914,263.5952 Q461.9307,262.2552 461.9307,260.6512 L461.9307,259.2037 Q461.9307,257.541 462.7034,256.1033 Q463.476,254.6656 464.8453,253.8929 Q466.2146,253.1202 467.7599,253.1202 Q468.6793,253.1202 469.4911,253.3256 Q470.3029,253.531 470.9875,253.9809 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.0229" lengthAdjust="spacing" textLength="83.8779" x="487.6809" y="265.2921">EdgeIterator</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="438.1679" x2="585.8931" y1="279.1756" y2="279.1756"/><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="446.9313" y="289.1908"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="117.6794" x="461.9542" y="298.4787">EdgeBrowser edge</text><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="446.9313" y="306.5122"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="50.0763" x="461.9542" y="315.8">int index</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="438.1679" x2="585.8931" y1="323.8335" y2="323.8335"/><ellipse cx="450.687" cy="337.6045" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="111.4198" x="461.9542" y="343.1366">boolean hasNext()</text><ellipse cx="450.687" cy="354.9258" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="78.8702" x="461.9542" y="360.4579">Object next()</text><!--MD5=[3f04f889cbbdb3bce32c55a080e41562]
+class Browser--><rect codeline="28" fill="#FEFECE" filter="url(#f196c6da5hdpw4)" height="129.3769" id="Browser" style="stroke:#A80036;stroke-width:1.8778625954198476;" width="170.2595" x="222.8397" y="8.7634"/><ellipse cx="275.4198" cy="28.7939" fill="#B4A7E5" rx="13.771" ry="13.771" style="stroke:#A80036;stroke-width:1.251908396946565;"/><path d="M276.6131,24.5883 L276.6131,32.9213 L278.7648,32.9213 Q279.5277,32.9213 279.8602,33.2147 Q280.1927,33.5081 280.1927,33.9971 Q280.1927,34.4666 279.8602,34.76 Q279.5277,35.0534 278.7648,35.0534 L272.3292,35.0534 Q271.5663,35.0534 271.2338,34.76 Q270.9012,34.4666 270.9012,33.9776 Q270.9012,33.5081 271.2338,33.2147 Q271.5663,32.9213 272.3292,32.9213 L274.4809,32.9213 L274.4809,24.5883 L272.3292,24.5883 Q271.5663,24.5883 271.2338,24.2948 Q270.9012,24.0014 270.9012,23.5124 Q270.9012,23.0429 271.2338,22.7495 Q271.5663,22.4561 272.3292,22.4561 L278.7648,22.4561 Q279.5277,22.4561 279.8602,22.7495 Q280.1927,23.0429 280.1927,23.5124 Q280.1927,24.0014 279.8602,24.2948 Q279.5277,24.5883 278.7648,24.5883 L276.6131,24.5883 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.0229" font-style="italic" lengthAdjust="spacing" textLength="55.084" x="300.458" y="34.941">Browser</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="224.0916" x2="391.8473" y1="48.8244" y2="48.8244"/><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="224.0916" x2="391.8473" y1="58.8397" y2="58.8397"/><polygon fill="#4177AF" points="236.6107,67.6031,231.6031,75.1145,241.6183,75.1145" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="103.9084" x="247.8779" y="78.1428">void push(String)</text><polygon fill="#4177AF" points="236.6107,84.9244,231.6031,92.4358,241.6183,92.4358" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="77.6183" x="247.8779" y="95.4641">String back()</text><polygon fill="#4177AF" points="236.6107,102.2457,231.6031,109.7572,241.6183,109.7572" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="75.1145" x="247.8779" y="112.7855">String next()</text><polygon fill="#4177AF" points="236.6107,119.567,231.6031,127.0785,241.6183,127.0785" style="stroke:#1963A0;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="137.7099" x="247.8779" y="130.1068">Iterator createIterator()</text><!--MD5=[dc3468b650213404b1cd76d2ec4aa053]
+class GoogleIterator--><rect codeline="35" fill="#FEFECE" filter="url(#f196c6da5hdpw4)" height="129.3769" id="GoogleIterator" style="stroke:#A80036;stroke-width:1.8778625954198476;" width="172.7634" x="630.9618" y="239.1145"/><ellipse cx="665.5145" cy="259.145" fill="#ADD1B2" rx="13.771" ry="13.771" style="stroke:#A80036;stroke-width:1.251908396946565;"/><path d="M668.9768,253.9809 Q669.1724,253.7071 669.4072,253.5701 Q669.6419,253.4332 669.9157,253.4332 Q670.3852,253.4332 670.6786,253.756 Q670.972,254.0787 670.972,254.8416 L670.972,256.6608 Q670.972,257.4237 670.6786,257.7562 Q670.3852,258.0887 669.9157,258.0887 Q669.4854,258.0887 669.2311,257.8344 Q668.9768,257.5997 668.8399,256.9542 Q668.7812,256.5043 668.5465,256.2696 Q668.1357,255.8001 667.3728,255.5262 Q666.6099,255.2524 665.8275,255.2524 Q664.869,255.2524 664.0768,255.6632 Q663.2845,256.074 662.6684,257.0129 Q662.0522,257.9518 662.0522,259.2428 L662.0522,260.6121 Q662.0522,262.1574 663.1672,263.1844 Q664.2822,264.2114 666.2774,264.2114 Q667.451,264.2114 668.2726,263.8984 Q668.7616,263.7028 669.2898,263.1551 Q669.6223,262.8225 669.8082,262.7247 Q669.994,262.6269 670.2483,262.6269 Q670.6591,262.6269 670.9818,262.9497 Q671.3046,263.2724 671.3046,263.7028 Q671.3046,264.1331 670.8742,264.6417 Q670.2483,265.3655 669.2507,265.7762 Q667.901,266.3435 666.2774,266.3435 Q664.38,266.3435 662.8738,265.5611 Q661.6414,264.9351 660.7807,263.5952 Q659.92,262.2552 659.92,260.6512 L659.92,259.2037 Q659.92,257.541 660.6927,256.1033 Q661.4654,254.6656 662.8346,253.8929 Q664.2039,253.1202 665.7492,253.1202 Q666.6686,253.1202 667.4804,253.3256 Q668.2922,253.531 668.9768,253.9809 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="15.0229" lengthAdjust="spacing" textLength="97.6489" x="686.5466" y="265.2921">GoogleIterator</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="632.2137" x2="802.4733" y1="279.1756" y2="279.1756"/><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="640.9771" y="289.1908"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="140.2137" x="656" y="298.4787">GoogleBrowser google</text><rect fill="none" height="7.5115" style="stroke:#C82930;stroke-width:1.251908396946565;" width="7.5115" x="640.9771" y="306.5122"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="50.0763" x="656" y="315.8">int index</text><line style="stroke:#A80036;stroke-width:1.8778625954198476;" x1="632.2137" x2="802.4733" y1="323.8335" y2="323.8335"/><ellipse cx="644.7328" cy="337.6045" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="111.4198" x="656" y="343.1366">boolean hasNext()</text><ellipse cx="644.7328" cy="354.9258" fill="#84BE84" rx="3.7557" ry="3.7557" style="stroke:#038048;stroke-width:1.251908396946565;"/><text fill="#000000" font-family="sans-serif" font-size="13.771" lengthAdjust="spacing" textLength="78.8702" x="656" y="360.4579">Object next()</text><!--MD5=[ba5ad4e625b23a29139ce31aa43356db]
+link Browser to Iterator--><path codeline="43" d="M393.262,73.2366 C406.5447,73.2366 419.84,73.2366 433.1353,73.2366 " fill="none" id="Browser-to-Iterator" style="stroke:#A80036;stroke-width:1.251908396946565;"/><polygon fill="#A80036" points="439.6577,73.2366,428.3905,68.229,433.3982,73.2366,428.3905,78.2443,439.6577,73.2366" style="stroke:#A80036;stroke-width:1.251908396946565;"/><!--MD5=[c042aeb6808eb3dd564f9602574094d0]
+reverse link Browser to GoogleBrowser--><path codeline="45" d="M231.0021,156.4009 C211.1719,177.5081 189.8394,200.2052 170.0592,221.2748 " fill="none" id="Browser-backto-GoogleBrowser" style="stroke:#A80036;stroke-width:1.251908396946565;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="224.8052,150.204,248.3411,137.9603,237.5747,162.2098,224.8052,150.204" style="stroke:#A80036;stroke-width:1.251908396946565;"/><!--MD5=[dbeeabb674156a4227d45497729c9156]
+reverse link Browser to EdgeBrowser--><path codeline="46" d="M307.9695,163.4742 C307.9695,179.6739 307.9695,196.5872 307.9695,212.8119 " fill="none" id="Browser-backto-EdgeBrowser" style="stroke:#A80036;stroke-width:1.251908396946565;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="299.2061,162.9985,307.9695,137.9603,316.7328,162.9985,299.2061,162.9985" style="stroke:#A80036;stroke-width:1.251908396946565;"/><!--MD5=[11d17c6e36b1222ed5eb38de0fb9c7c6]
+reverse link Iterator to EdgeIterator--><path codeline="48" d="M512.0305,146.3606 C512.0305,176.0434 512.0305,210.1579 512.0305,238.8892 " fill="none" id="Iterator-backto-EdgeIterator" style="stroke:#A80036;stroke-width:1.251908396946565;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="503.2672,146.1853,512.0305,121.1472,520.7939,146.1853,503.2672,146.1853" style="stroke:#A80036;stroke-width:1.251908396946565;"/><!--MD5=[446892f980f51d9540390aa66c4f58ea]
+reverse link Iterator to GoogleIterator--><path codeline="49" d="M571.1582,140.1011 C599.1508,171.1609 632.4391,208.1173 660.1814,238.8892 " fill="none" id="Iterator-backto-GoogleIterator" style="stroke:#A80036;stroke-width:1.251908396946565;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="564.3227,145.6095,554.0696,121.1472,577.3426,133.8791,564.3227,145.6095" style="stroke:#A80036;stroke-width:1.251908396946565;"/><!--MD5=[119f63fa2da46891340e7a266aec6254]
+@startuml
+class GoogleBrowser {
+- List<String> urls
+- Integer index
++ void push(String)
++ String back()
++ String next()
++ Iterator createIterator()
+}
+class EdgeBrowser {
+~ String[] urls
+- Integer index
+- int count
++ void push(String)
++ String back()
++ String next()
++ Iterator createIterator()
+}
+interface Iterator {
+~ boolean hasNext()
+~ Object next()
+}
+class EdgeIterator {
+- EdgeBrowser edge
+- int index
++ boolean hasNext()
++ Object next()
+}
+interface Browser {
+~ void push(String)
+~ String back()
+~ String next()
+~ Iterator createIterator()
+}
+
+class GoogleIterator {
+- GoogleBrowser google
+- int index
++ boolean hasNext()
++ Object next()
+}
+
+
+Browser -> Iterator
+
+Browser <|.. GoogleBrowser
+Browser <|.. EdgeBrowser
+
+Iterator <|.. EdgeIterator
+Iterator <|.. GoogleIterator
+scale 820*1920
+
+@enduml
+
+PlantUML version 1.2021.12(Wed Oct 06 00:01:58 CST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg></p><p><strong>&#x8FED;&#x4EE3;&#x5668;&#x6A21;&#x5F0F;</strong>&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x987A;&#x5E8F;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x805A;&#x5408;&#x5BF9;&#x8C61;&#x4E2D;&#x7684;&#x5404;&#x4E2A;&#x5143;&#x7D20;&#xFF0C;&#x800C;&#x53C8;&#x4E0D;&#x66B4;&#x9732;&#x5176;&#x5185;&#x90E8;&#x7684;&#x8868;&#x793A;&#xFF0C;&#x4ECE;&#x7C7B;&#x56FE;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230; google &#x548C; edge &#x5206;&#x522B;&#x4F7F;&#x7528; List&#x96C6;&#x5408;&#x548C; array &#x6570;&#x7EC4;&#x5B9E;&#x73B0;&#x5B58;&#x50A8;url&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x518D;&#x4F7F;&#x7528; Iterator &#x904D;&#x5386;&#x7684;&#x65F6;&#x5019;&#x6839;&#x672C;&#x65E0;&#x6CD5;&#x5F97;&#x77E5;&#x5185;&#x90E8;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5229;&#x7528; createIterator() &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x5BF9;&#x5E94;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#x5373;&#x53EF;&#xFF0C;&#x6709;&#x4E86;&#x8FD9;&#x4E2A;&#x8FED;&#x4EE3;&#x5668;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x6839;&#x672C;&#x4E0D;&#x7528;&#x7BA1;google &#x6216; edge &#x5185;&#x90E8;&#x7A76;&#x7ADF;&#x662F;&#x7528;<strong>&#x6570;&#x7EC4;</strong>&#x8FD8;&#x662F;&#x7528; <strong>ArrayList</strong> &#x6765;&#x4FDD;&#x5B58;&#x7684;&#x3002;</p>
+<ol>
+<li>&#x8FED;&#x4EE3;&#x5668;&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x96C6;&#x5408;&#x7684;&#x5143;&#x7D20;&#xFF0C;&#x800C;&#x4E0D;&#x9700;&#x8981;&#x66B4;&#x9732;&#x5B83;&#x7684;&#x5185;&#x90E8;&#x7ED3;&#x6784;&#x3002;</li>
+<li>&#x8FED;&#x4EE3;&#x5668;&#x5C06;&#x904D;&#x5386;&#x96C6;&#x5408;&#x7684;&#x5DE5;&#x4F5C;&#x5C01;&#x88C5;&#x8FDB;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x4E2D;&#x3002;</li>
+<li>&#x5F53;&#x4F7F;&#x7528;&#x8FED;&#x4EE3;&#x5668;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x4F9D;&#x8D56;&#x96C6;&#x5408;&#x63D0;&#x4F9B;&#x904D;&#x5386;&#x3002;</li>
+<li>&#x8FED;&#x4EE3;&#x5668;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x901A;&#x7528;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x904D;&#x5386;&#x96C6;&#x5408;&#x9879;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x7F16;&#x7801;&#x4F7F;&#x7528;&#x96C6;&#x5408;&#x7684;&#x9879;&#x65F6;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x591A;&#x6001;&#x673A;&#x5236;</li>
+</ol>
+
+      </div>
+
+
+​      
+​    
+​    
+​    
+​    
+​    
+​    
+​    
+​    
+
+    </body></html>
