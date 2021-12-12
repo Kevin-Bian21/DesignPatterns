@@ -25,4 +25,13 @@ public abstract class Duck {
     public void performQuack(){
         quackBehavior.quack();
     }
+
+    //使用setter方法来设定鸭子行为，而不再具体鸭子的构造器内实例化。
+    public void setFlyBehavior(FlyBehavior fb) {
+        this.flyBehavior = fb;
+    }
+
+    public void setQuackBehavior(QuackBehavior qb) {
+        this.quackBehavior = qb;
+    }
 }

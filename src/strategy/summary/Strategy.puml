@@ -1,0 +1,53 @@
+@startuml
+skinparam classAttributeIconSize 0;
+
+class 封装呱呱叫行为.Squeak {
++ void quack()
+}
+class 封装飞行行为.FlyNoWay {
++ void fly()
+}
+class 封装呱呱叫行为.MuteQuack {
++ void quack()
+}
+interface 封装飞行行为.FlyBehavior {
+~ void fly()
+}
+interface 封装呱呱叫行为.QuackBehavior {
+~ void quack()
+}
+class 封装呱呱叫行为.Quack {
++ void quack()
+}
+
+class 客户.ModelDuck {
++ void display()
+}
+abstract class 客户.Duck {
+~ FlyBehavior flyBehavior
+~ QuackBehavior quackBehavior
++ {abstract} void display()
++ void swim()
++ void performFly()
++ void performQuack()
++ void setFlyBehavior(FlyBehavior)
++ void setQuackBehavior(QuackBehavior)
+}
+class 客户.MallardDuck {
++ void display()
+}
+class 封装飞行行为.FlyWithWings {
++ void fly()
+}
+
+封装呱呱叫行为.QuackBehavior <|.. 封装呱呱叫行为.Squeak
+封装飞行行为.FlyBehavior <|.. 封装飞行行为.FlyNoWay
+封装呱呱叫行为.QuackBehavior <|.. 封装呱呱叫行为.MuteQuack
+封装呱呱叫行为.QuackBehavior <|.. 封装呱呱叫行为.Quack
+客户.Duck <|-- 客户.ModelDuck
+客户.Duck <|-- 客户.MallardDuck
+封装飞行行为.FlyBehavior <|.. 封装飞行行为.FlyWithWings
+
+客户.Duck o--> 封装飞行行为.FlyBehavior
+客户.Duck o-> 封装呱呱叫行为.QuackBehavior
+@enduml

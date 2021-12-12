@@ -4,6 +4,9 @@ package strategy;
  * @Data 2021/6/2 - 20:00
  **/
 
+import strategy.fly.FlyWithWings;
+import strategy.quack.Quack;
+
 /**策略模式
  * Duck有四种属性，分别是样子，游泳，飞，叫；
  * 每个鸭子的样子都是不一样的，我们就可以将其设计为抽象方法，所有鸭子都需要实现该方法。
@@ -24,6 +27,8 @@ public class Main {
         System.out.println("--------------------------------------");
 
         Duck duck1 = new MallardDuck();
+        duck1.setFlyBehavior(new FlyWithWings());
+        duck1.setQuackBehavior(new Quack());
         duck1.display();
         duck1.swim();
         duck1.performFly();

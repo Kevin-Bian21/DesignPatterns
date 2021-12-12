@@ -11,10 +11,7 @@ import strategy.quack.QuackBehavior;
  **/
 public class MallardDuck extends Duck {
 
-    public MallardDuck(){
-        flyBehavior = new FlyWithWings();
-        quackBehavior = new Quack();
-    }
+    public MallardDuck(){}
 
 
     public MallardDuck(FlyBehavior flyBehavior,QuackBehavior quackBehavior){
