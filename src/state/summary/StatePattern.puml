@@ -28,7 +28,7 @@ interface Tool {
 'note "Tool.mouseUp()" as N2
 'Canvas::mouseUp . N2
 
-Canvas -> Tool
+Canvas o-> Tool
 
 note left of Canvas::mouseDown
  Tool.mouseDown()
@@ -61,7 +61,7 @@ class ConcreteStateC {
     handle()
 }
 
-Context -> State
+Context o-> State
 note "state.handle()" as N1
 Context ... N1
 
